@@ -1,7 +1,16 @@
 import { ChangeEvent, FC, useState, useEffect } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "./ui/button";
-import { Pause, Play, RefreshCw } from "lucide-react";
+import { Car, Pause, Play, RefreshCw } from "lucide-react";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
+
 
 const Timer: FC = () => {
   const [minuteInput, setMinuteInput] = useState<number>(0);
@@ -56,7 +65,7 @@ const Timer: FC = () => {
   };
 
   return (
-    <div className="flex justify-center w-full h-[75%] flex-col  border-2 rounded-2xl  space-y-4 ">
+    <Card className="flex justify-center w-full h-[30vh] flex-col  border-2 rounded-2xl  space-y-4 ">
       <p
         className="
       text-4xl sm:text-4xl md:text-6xl lg:text-7xl xl:text-8xl
@@ -111,7 +120,7 @@ const Timer: FC = () => {
           </>
         )}
       </div>
-    </div>
+    </Card>
   );
 };
 

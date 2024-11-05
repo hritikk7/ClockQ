@@ -7,10 +7,10 @@ import Stopwatch from "./components/Stopwatch";
 const App = () => {
   return (
     <div className="h-screen w-screen bg-gray-50 flex justify-center items-center">
-      <div className="h-[60%] w-[80%]  border-border rounded-2xl bg-background/50 shadow-xl md:p-4 ">
+      <div className="  w-[80%] h-[75vh]  border-border rounded-2xl bg-background/50 shadow-xl md:p-4 ">
         <Tabs defaultValue="account" className="w-full h-full p-2">
-          <TabsList className="w-full grid grid-cols-3 ">
-            <TabsTrigger className="font-bold" value="clock">
+          <TabsList className="w-full  grid grid-cols-3 ">
+            <TabsTrigger  className=" font-bold" value="clock">
               Clock
             </TabsTrigger>
             <TabsTrigger className="font-bold" value="timer">
@@ -20,15 +20,15 @@ const App = () => {
               Stopwatch
             </TabsTrigger>
           </TabsList>
-          <TabsContent value="clock" className="w-full h-full py-2 md:py-6 ">
+          <TabsContent value="clock" className="w-full h-full flex items-center py-2 md:py-6 ">
             <Clock />
           </TabsContent>
-          <TabsContent value="timer" className="w-full h-full py-2 md:py-6">
+          <TabsContent value="timer" className="w-full  flex items-center py-2 md:py-6">
             <Timer />
           </TabsContent>
           <TabsContent
             value="stopwatch"
-            className="w-full h-full py-2 md:py-6 "
+            className="w-full h-full flex flex-grow flex-col overflow-y-auto py-2 md:py-6 "
           >
             <Stopwatch />
           </TabsContent>

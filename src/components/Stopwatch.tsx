@@ -3,12 +3,12 @@ import { Button } from "./ui/button";
 import { Flag, Pause, Play, RefreshCw } from "lucide-react";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
+import { Card } from "./ui/card";
 
 const Stopwatch: FC = () => {
   const [isRunning, setIsRunning] = useState<boolean>(false);
   const [time, setTime] = useState<number>(0);
   const [laps, setLaps] = useState<number[]>([]);
-  console.log("🚀 ~ laps:", laps);
 
   useEffect(() => {
     if (isRunning) {
@@ -17,12 +17,12 @@ const Stopwatch: FC = () => {
       }, 10);
       return () => clearInterval(intervalId);
     }
-  }, [ isRunning]);
-  console.log("🚀 ~ time:", time);
+  }, [isRunning]);
 
   const handleLapClick = () => {
-    setLaps([...laps, time]);
+    setLaps([time, ...laps]);
   };
+    console.log("🚀 ~ handleLapClick ~ laps:", laps)
 
   const handleStart = () => {
     setIsRunning(!isRunning);
@@ -36,11 +36,8 @@ const Stopwatch: FC = () => {
 
   const formatTime = (time: number) => {
     const minutes = String(Math.floor(time / 60000));
-    console.log("🚀 ~ formatTime ~ minutes:", minutes);
     const seconds = String(Math.floor((time % 60000) / 1000));
-    console.log("🚀 ~ formatTime ~ seconds:", seconds);
     const milliseconds = Math.floor((time % 1000) / 10);
-    console.log("🚀 ~ formatTime ~ miliseconds:", milliseconds);
 
     return `${minutes.padStart(2, "0")}:${seconds.padStart(
       2,
@@ -50,7 +47,7 @@ const Stopwatch: FC = () => {
 
   return (
     <>
-      <div className="flex justify-center w-full h-[75%] flex-col  border-2 rounded-2xl  space-y-4 ">
+      <div className="flex justify-center w-full  flex-col    space-y-4 ">
         <p
           className="
           text-4xl sm:text-4xl md:text-6xl lg:text-7xl xl:text-8xl
@@ -91,23 +88,24 @@ const Stopwatch: FC = () => {
           </div>
         </div>
       </div>
-      <div className="w-full h-[200px] overflow-hidden overflow-y-auto">
-        <ScrollArea className=" rounded-md border">
-          <div className="p-4">
-            <h4 className="mb-4 text-sm font-medium leading-none">Tags</h4>
-            {laps.map((lap) => (
-              <>
-                <div key={lap} className="text-sm">
-                  {lap}
+      {laps && laps.length != 0 && (
+        <Card className="w-full h-[200px] overflow-hidden overflow-y-auto mt-3">
+          <ScrollArea className="justify-center items-center">
+            <div className="p-4 px-8">
+              {laps.map((lap, index) => (
+                <div key={index}>
+                  <div key={index} className="text-sm flex justify-between ">
+                    <span>Lap {laps.length - index}</span>
+                    <span>{formatTime(lap)}</span>
+                  </div>
+                  <Separator className="my-2" />
                 </div>
-                <Separator className="my-2" />
-              </>
-            ))}
-          </div>
-        </ScrollArea>
-      </div>
+              ))}
+            </div>
+          </ScrollArea>
+        </Card>
+      )}
     </>
   );
 };
-
 export default Stopwatch;

@@ -44,7 +44,7 @@ const Clock: FC = () => {
   };
 
   return (
-    <div className="flex justify-center w-full h-[75%] flex-col  border-2 rounded-2xl  space-y-4 ">
+    <div className="flex justify-center w-full h-[30vh] flex-col  border-2 rounded-2xl  space-y-4 ">
       <p
         className="
         text-4xl sm:text-4xl md:text-6xl lg:text-7xl xl:text-8xl
